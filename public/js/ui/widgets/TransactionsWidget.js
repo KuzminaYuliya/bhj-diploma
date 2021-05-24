@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Класс TransactionsWidget отвечает за
  * открытие всплывающих окон для
@@ -11,8 +12,10 @@ class TransactionsWidget {
    * Если переданный элемент не существует,
    * необходимо выкинуть ошибку.
    * */
-  constructor( element ) {
-
+  constructor(element) {
+    //super (element);
+    this.element = element;
+    this.registerEvents();
   }
   /**
    * Регистрирует обработчики нажатия на
@@ -21,6 +24,7 @@ class TransactionsWidget {
    * экземпляра окна
    * */
   registerEvents() {
-
-  }
+    this.element.querySelector('.create-income-button').addEventListener('click', () => App.getModal('newIncome').open());
+    this.element.querySelector('.create-expense-button').addEventListener('click', () => App.getModal('newExpense').open());
+  };
 }

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Класс AccountsWidget управляет блоком
  * отображения счетов в боковой колонке
@@ -13,8 +14,13 @@ class AccountsWidget {
    * Если переданный элемент не существует,
    * необходимо выкинуть ошибку.
    * */
-  constructor( element ) {
-
+  constructor(element) {
+    
+    if (!element) throw new Error('Передан пустой элемент')
+    this.element = element;
+    this.registerEvents();
+    this.update();
+    
   }
 
   /**
@@ -25,7 +31,11 @@ class AccountsWidget {
    * вызывает AccountsWidget.onSelectAccount()
    * */
   registerEvents() {
-
+    document.querySelector('.create-account').addEventListener('click', () => App.getModal('createAccount').open());
+    
+    if (this.element) {
+      this.element.addEventListener('click', e => this.onSelectAccount(e.target.closest('.account')));
+    }; 
   }
 
   /**
@@ -39,7 +49,14 @@ class AccountsWidget {
    * метода renderItem()
    * */
   update() {
-
+    let currentUser = User.current();
+    if (currentUser) {
+      let dataUser = {'mail': currentUser.email, 'password': currentUser.password};
+      Account.list(dataUser, response => {
+        this.clear();
+        response.data.map(item => this.renderItem(item));
+      })
+    } 
   }
 
   /**
@@ -48,10 +65,10 @@ class AccountsWidget {
    * в боковой колонке
    * */
   clear() {
-
+    [...document.querySelectorAll('.account')].forEach(item => this.element.removeChild(item));
   }
 
-  /**
+  /** 
    * Срабатывает в момент выбора счёта
    * Устанавливает текущему выбранному элементу счёта
    * класс .active. Удаляет ранее выбранному элементу
@@ -59,7 +76,11 @@ class AccountsWidget {
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
   onSelectAccount( element ) {
-
+    
+    let activeAccount = this.element.querySelector('.active');
+    if (activeAccount) activeAccount.classList.remove('active');
+    element.classList.add('active');
+    App.showPage('transactions', {account_id: element.dataset.id});
   }
 
   /**
@@ -68,7 +89,12 @@ class AccountsWidget {
    * item - объект с данными о счёте
    * */
   getAccountHTML(item){
-
+    return `<li class="active account" data-id="${item.id}">
+    <a href="#">
+      <span>${item.name}</span> /
+      <span>${item.sum} ₽</span>
+    </a>
+  </li>`
   }
 
   /**
@@ -78,6 +104,6 @@ class AccountsWidget {
    * и добавляет его внутрь элемента виджета
    * */
   renderItem(data){
-
+    this.element.insertAdjacentHTML('beforeEnd', this.getAccountHTML(data));
   }
 }
