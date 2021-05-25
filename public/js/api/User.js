@@ -77,12 +77,13 @@ class User {
       callback: (e, response) => {
         if (response && response.user) {
           this.setCurrent(response.user);
+          callback();
         }
         else window.alert(response.error);
       }
     });
-    callback();
-  }
+    //callback();
+  };
 
   /**
    * Производит попытку регистрации пользователя.
@@ -100,12 +101,13 @@ class User {
         callback: (e, response) => {
           if (response && response.user) {
             this.setCurrent(response.user);
+            callback();
           }
           else window.alert(response.error);
         }
     });
-    callback();
-  }
+    //callback();
+  };
   
   /**
    * Производит выход из приложения. После успешного
@@ -131,4 +133,4 @@ class User {
         }
     });
   }
-}
+};

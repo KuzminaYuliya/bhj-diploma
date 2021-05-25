@@ -11,7 +11,7 @@ class Sidebar {
   static init() {
     this.initAuthLinks();
     this.initToggleButton();
-  }
+  };
 
   /**
    * Отвечает за скрытие/показа боковой колонки:
@@ -24,7 +24,7 @@ class Sidebar {
        document.body.classList.toggle('sidebar-collapse');
     });  
 
-  }
+  };
 
   /**
    * При нажатии на кнопку входа, показывает окно входа
@@ -39,5 +39,5 @@ class Sidebar {
     document.querySelector('.menu-item_logout').addEventListener('click', () => User.logout({}, () => {
       App.setState('init');
     }));
-  }
-}
+  };
+};

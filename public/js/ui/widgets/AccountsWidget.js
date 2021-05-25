@@ -21,7 +21,7 @@ class AccountsWidget {
     this.registerEvents();
     this.update();
     
-  }
+  };
 
   /**
    * При нажатии на .create-account открывает окно
@@ -36,7 +36,7 @@ class AccountsWidget {
     if (this.element) {
       this.element.addEventListener('click', e => this.onSelectAccount(e.target.closest('.account')));
     }; 
-  }
+  };
 
   /**
    * Метод доступен только авторизованным пользователям
@@ -55,9 +55,9 @@ class AccountsWidget {
       Account.list(dataUser, response => {
         this.clear();
         response.data.map(item => this.renderItem(item));
-      })
-    } 
-  }
+      });
+    };
+  };
 
   /**
    * Очищает список ранее отображённых счетов.
@@ -66,7 +66,7 @@ class AccountsWidget {
    * */
   clear() {
     [...document.querySelectorAll('.account')].forEach(item => this.element.removeChild(item));
-  }
+  };
 
   /** 
    * Срабатывает в момент выбора счёта
@@ -81,7 +81,7 @@ class AccountsWidget {
     if (activeAccount) activeAccount.classList.remove('active');
     element.classList.add('active');
     App.showPage('transactions', {account_id: element.dataset.id});
-  }
+  };
 
   /**
    * Возвращает HTML-код счёта для последующего
@@ -94,8 +94,8 @@ class AccountsWidget {
       <span>${item.name}</span> /
       <span>${item.sum} ₽</span>
     </a>
-  </li>`
-  }
+    </li>`
+  };
 
   /**
    * Получает массив с информацией о счетах.
@@ -105,5 +105,5 @@ class AccountsWidget {
    * */
   renderItem(data){
     this.element.insertAdjacentHTML('beforeEnd', this.getAccountHTML(data));
-  }
-}
+  };
+};

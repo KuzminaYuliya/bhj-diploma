@@ -11,7 +11,7 @@ class Entity {
    * (в зависимости от того, что наследуется от Entity)
    * */
   static list(data, callback) {
-     createRequest({ 
+      createRequest({ 
         URL: this.URL,
         method: 'GET',
         responseType: 'json',
@@ -20,7 +20,7 @@ class Entity {
           if (response) callback(response);
         }
       });
-  }
+  };
     /**
    * Создаёт счёт или доход/расход с помощью запроса
    * на сервер. (в зависимости от того,
@@ -35,7 +35,7 @@ class Entity {
       callback: callback()
     });
     callback();
-  }
+  };
   
    /**
    * Удаляет информацию о счёте или доходе/расходе

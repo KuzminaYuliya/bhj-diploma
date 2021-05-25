@@ -16,7 +16,7 @@ class UserWidget {
     //super (element);
     if (!element) throw new Error('Передан пустой элемент');
     this.element = element;
-  }
+  };
 
   /**
    * Получает информацию о текущем пользователе
@@ -30,5 +30,5 @@ class UserWidget {
     if (currentUser) {
       this.element.querySelector('.user-name').textContent = currentUser.name;
     };
-  }
-}
+  };
+};

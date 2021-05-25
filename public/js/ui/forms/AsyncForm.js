@@ -17,7 +17,7 @@ class AsyncForm {
     if (!element) throw new Error('Передан пустой элемент');
     this.element = element;
     this.registerEvents();
-  }
+  };
 
   /**
    * Необходимо запретить отправку формы и в момент отправки
@@ -28,7 +28,7 @@ class AsyncForm {
       e.preventDefault();
       this.submit();
     });
-  }
+  };
 
   /**
    * Преобразует данные формы в объект вида
@@ -39,11 +39,11 @@ class AsyncForm {
    * */
   getData() {
     return new FormData(this.element);
-  }
+  };
 
   onSubmit(options){
 
-  }
+  };
 
   /**
    * Вызывает метод onSubmit и передаёт туда
@@ -51,5 +51,5 @@ class AsyncForm {
    * */
   submit() {
     this.onSubmit(this.getData());
-  }
-}
+  };
+};

@@ -16,7 +16,7 @@ class TransactionsWidget {
     //super (element);
     this.element = element;
     this.registerEvents();
-  }
+  };
   /**
    * Регистрирует обработчики нажатия на
    * кнопки «Новый доход» и «Новый расход».
@@ -27,4 +27,4 @@ class TransactionsWidget {
     this.element.querySelector('.create-income-button').addEventListener('click', () => App.getModal('newIncome').open());
     this.element.querySelector('.create-expense-button').addEventListener('click', () => App.getModal('newExpense').open());
   };
-}
+};

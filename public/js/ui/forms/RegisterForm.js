@@ -20,9 +20,9 @@ class RegisterForm extends AsyncForm {
     formData.append('password', this.element.querySelector('[name="password"]').value);
     formData.append('name', this.element.querySelector('[name="name"]').value);
     User.register(formData, () => {
+      App.setState('user-logged');
       this.element.reset();
       App.getModal('register').close();
-      App.setState('user-logged');
     });
   }
 }

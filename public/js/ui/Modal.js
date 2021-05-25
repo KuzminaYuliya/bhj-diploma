@@ -16,7 +16,7 @@ class Modal {
       if (!element) throw new Error('Передан пустой элемент');
       this.element = element;
       this.registerEvents();
-  }
+  };
 
   /**
    * При нажатии на элемент с data-dismiss="modal"
@@ -25,7 +25,7 @@ class Modal {
    * */
   registerEvents() {
     Array.from(this.element.querySelectorAll('button[data-dismiss="modal"]')).forEach(item => item.onclick = this.onClose.bind(this));
-  }
+  };
 
   /**
    * Срабатывает после нажатия на элементы, закрывающие окно.
@@ -33,7 +33,7 @@ class Modal {
    * */
   onClose(e) {
       this.close();
-  }
+  };
   /**
    * Открывает окно: устанавливает CSS-свойство display
    * со значением «block»
@@ -41,12 +41,12 @@ class Modal {
   open() {
       
     this.element.style.display = 'block';
-  }
+  };
   /**
    * Закрывает окно: удаляет CSS-свойство display
    * */
   close() {
       this.element.style.display = 'none';
       return false;
-  }
-}
+  };
+};

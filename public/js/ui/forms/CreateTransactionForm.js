@@ -28,8 +28,8 @@ class CreateTransactionForm extends AsyncForm {
               this.select.insertAdjacentHTML('beforeEnd', `<option value="${item.id}">${item.name}</option>`);
         });
       });
-    } 
-  }
+    }; 
+  };
 
   /**
    * Создаёт новую транзакцию (доход или расход)
@@ -43,5 +43,5 @@ class CreateTransactionForm extends AsyncForm {
       (new Modal(this.element.closest('.modal' ))).close();
       App.update();
     });
-  }
-}
+  };
+};

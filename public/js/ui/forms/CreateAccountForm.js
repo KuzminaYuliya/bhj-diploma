@@ -11,7 +11,7 @@ class CreateAccountForm extends AsyncForm {
    * */
   constructor(element) {
     super (element);
-  }
+  };
   
    onSubmit(data) {
       const formData = new FormData();
@@ -21,6 +21,6 @@ class CreateAccountForm extends AsyncForm {
         App.update();
         this.element.reset();
     });
-  }
-}
+  };
+};
 

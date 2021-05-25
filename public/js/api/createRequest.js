@@ -25,5 +25,5 @@
         xhr.onerror = function() {
             console.error("Произошла ошибка: ", e);
         };
-    }
+    };
 };

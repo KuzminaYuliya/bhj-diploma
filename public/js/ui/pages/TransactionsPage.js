@@ -15,14 +15,14 @@ class TransactionsPage {
     if(!element) throw new Error('Передан пустой элемент');
     this.element = element;
     this.registerEvents();
-  }
+  };
 
   /**
    * Вызывает метод render для отрисовки страницы
    * */
   update(options) {
     this.render(this.lastOptions ?  this.lastOptions : options);
-  }
+  };
 
   /**
    * Отслеживает нажатие на кнопку удаления транзакции
@@ -33,7 +33,7 @@ class TransactionsPage {
   registerEvents() {
     this.element.querySelector('.remove-account').addEventListener( 'click', e => this.removeAccount());
     this.element.addEventListener('click', e => this.removeTransaction(e.target.closest('.transaction__remove')));
-  }
+  };
 
   /**
    * Удаляет счёт. Необходимо показать диаголовое окно (с помощью confirm())
@@ -53,7 +53,7 @@ class TransactionsPage {
         Account.remove(data, () => App.update());
       }
     }
-  }
+  };
 
   /**
    * Удаляет транзакцию (доход или расход). Требует
@@ -70,7 +70,7 @@ class TransactionsPage {
         Transaction.remove(data, () => App.update());
       }
     }
-  }
+  };
 
   /**
    * С помощью Account.get() получает название счёта и отображает
@@ -88,7 +88,7 @@ class TransactionsPage {
       }); 
       Transaction.list(options, response => this.renderTransactions(response.data));
     };
-  }
+  };
 
   /**
    * Очищает страницу. Вызывает
@@ -99,14 +99,14 @@ class TransactionsPage {
     this.renderTransactions([]);
     this.renderTitle('Название счёта');
     this.lastOptions = null;
-  }
+  };
 
   /**
    * Устанавливает заголовок в элемент .content-title
    * */
   renderTitle(name) {
     this.element.querySelector('.content-title').textContent = name;
-  }
+  };
 
   /**
    * Форматирует дату в формате 2019-03-10 03:20:41 (строка)
@@ -117,7 +117,7 @@ class TransactionsPage {
     const DMY = inputDate.toLocaleString('ru', {year: 'numeric', month: 'long', day: 'numeric'});
     const HM = inputDate.toLocaleString('ru', {hour: 'numeric', minute: 'numeric'});
     return `${DMY} в ${HM}`;
-  }
+  };
 
   /**
    * Формирует HTML-код транзакции (дохода или расхода).
@@ -144,8 +144,8 @@ class TransactionsPage {
             <i class="fa fa-trash"></i>  
         </button>
     </div>
-</div>`
-  }
+    </div>`
+};
 
   /**
    * Отрисовывает список транзакций на странице
@@ -155,5 +155,5 @@ class TransactionsPage {
     const content = this.element.querySelector('.content');
     content.innerHTML = '';
     data.forEach( item => content.insertAdjacentHTML('afterbegin', this.getTransactionHTML(item)))
-  }
-}
+  };
+};
