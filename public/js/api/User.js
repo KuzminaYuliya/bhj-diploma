@@ -49,7 +49,7 @@ class User {
       method: 'GET',
       responseType: 'json',
      // async,
-      //data,
+      data: this.current(),
       callback: (err, response) => {
         if (response.success = true) {
             this.setCurrent(response.user);
